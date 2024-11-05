@@ -21,69 +21,6 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>Test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/11/01/hello-world/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p><strong>Run commands in E:\github\blog.</strong></p>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="quick-preview">Quick preview</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
-<h3 id="quick-deploy">Quick deploy</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
-<h2 id="post-settings">Post settings</h2>
-<h3 id="where-are-they">Where are they?</h3>
-<p>E:\github\blog\source\_posts</p>
-<h3 id="add-to-categories">Add to categories</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
-<h3 id="add-tags">Add tags</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
-<h3 id="pin-to-top">Pin to top</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
-<h3 id="hide-article">Hide article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
-<h3 id="encrypt-article">Encrypt article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
-<h3 id="insert-image">Insert image</h3>
-<p>A folder with the same name will be created when
-<code>hexo n ""</code>. Put images in this folder and then use
-<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
-on home page.</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Operation</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Home Page</tag>
-        <tag>Milestone</tag>
       </tags>
   </entry>
   <entry>
@@ -192,10 +129,7 @@ class="math inline">\(O(n)\)</span>！</p>
         <category>ARC</category>
       </categories>
       <tags>
-        <tag>题解</tag>
         <tag>OI</tag>
-        <tag>Atcoder</tag>
-        <tag>ARC</tag>
         <tag>建图</tag>
         <tag>基环树</tag>
         <tag>计数</tag>
@@ -212,7 +146,66 @@ class="math inline">\(O(n)\)</span>！</p>
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>Test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/11/01/hello-world/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p><strong>Run commands in E:\github\blog.</strong></p>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="quick-preview">Quick preview</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
+<h3 id="quick-deploy">Quick deploy</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
+<h2 id="post-settings">Post settings</h2>
+<h3 id="where-are-they">Where are they?</h3>
+<p>E:\github\blog\source\_posts</p>
+<h3 id="add-to-categories">Add to categories</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
+<h3 id="add-tags">Add tags</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
+<h3 id="pin-to-top">Pin to top</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
+<h3 id="hide-article">Hide article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
+<h3 id="encrypt-article">Encrypt article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
+<h3 id="insert-image">Insert image</h3>
+<p>A folder with the same name will be created when
+<code>hexo n ""</code>. Put images in this folder and then use
+<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
+on home page.</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Operation</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
