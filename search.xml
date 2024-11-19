@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Password tester</title>
-    <url>/2024/11/03/Password-tester/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="ecd3cd297b4b8c955353f80717691ab0653cf1776ca474cdadf10ad8e665c6da">4630436162ade97ba2718b7d0c4b3b633edd16a8c78b7d4a375abf0237cd065b1fdd7fe03f8f5b88b0b2ae7e4e8ad067</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Test</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ARC083F 题解</title>
     <url>/2024/11/02/ARC083F-%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p>这是一篇题解。</p>
-<span id="more"></span>
-<h3 id="preface">Preface</h3>
+    <content><![CDATA[<h3 id="preface">Preface</h3>
 <p>教练把这题给我让我讲，为了理清思路，写了这篇题解。我菜菜 QaQ</p>
 <h3 id="problem">Problem</h3>
 <p><span class="math inline">\(n\times n\)</span> 的正方形上有 <span
@@ -130,9 +105,10 @@ class="math inline">\(O(n)\)</span>！</p>
       </categories>
       <tags>
         <tag>OI</tag>
-        <tag>建图</tag>
-        <tag>基环树</tag>
         <tag>计数</tag>
+        <tag>建图</tag>
+        <tag>组合数学</tag>
+        <tag>AT*3500</tag>
       </tags>
   </entry>
   <entry>
@@ -140,6 +116,29 @@ class="math inline">\(O(n)\)</span>！</p>
     <url>/2024/11/04/Image-tester/</url>
     <content><![CDATA[<p><img src="background.png" /></p>
 ]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Test</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Password tester</title>
+    <url>/2024/11/03/Password-tester/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ecd3cd297b4b8c955353f80717691ab0653cf1776ca474cdadf10ad8e665c6da">4630436162ade97ba2718b7d0c4b3b633edd16a8c78b7d4a375abf0237cd065b1fdd7fe03f8f5b88b0b2ae7e4e8ad067</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>Hexo</category>
         <category>Test</category>
@@ -206,6 +205,60 @@ on home page.</p>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1679F 题解</title>
+    <url>/2024/11/19/CF1679F-%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p><strong>Difficulty: *2600</strong><br />
+Duel 的时候花了 27min47s 把对面秒了。</p>
+<p>显然有若干个等价类，所以只需要对等价类计数就好。<br />
+每个等价类只取最小的数作为代表，所以就是要求出，有多少个 <span
+class="math inline">\(n\)</span>
+位数，使得它<strong>不能通过操作变得更小</strong>。</p>
+<p>设 <span class="math inline">\(ok_{u,v}=\text{true}\)</span>
+表示输入中<strong>不存在</strong>无序对 <span
+class="math inline">\((u,v)\)</span>。<br />
+考虑什么时候可以在下一位填一个 <span
+class="math inline">\(k\)</span>，就是，填上 <span
+class="math inline">\(k\)</span>
+之后，往前一直能换就换，过程中不能碰到一个大于 <span
+class="math inline">\(k\)</span> 的。<br />
+所以当这一位填了 <span class="math inline">\(x\)</span> 之后：</p>
+<ul>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{true}\)</span> 的
+<span class="math inline">\(k\)</span> 都可以填在下一位（这里面包括
+<span class="math inline">\(x=k\)</span>），<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&lt;x\)</span> 的 <span class="math inline">\(k\)</span>
+都不能填在下一位，<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&gt;x\)</span> 的 <span
+class="math inline">\(k\)</span>，这一位能填的下一位也可以，这一位不能填的下一位也不行。</li>
+</ul>
+<p>立即有 <span class="math inline">\(f_{i,sta}\)</span>
+表示，现在填完了从高到低前 <span class="math inline">\(i\)</span>
+位，下一位能填的数的集合为 <span
+class="math inline">\(sta\)</span>，有多少种方案。枚举下一位填的数 <span
+class="math inline">\(k\)</span>，即得 <span
+class="math inline">\(sta&#39;\)</span>，转移即可。<br />
+令 <span class="math inline">\(w=10\)</span>，时间复杂度 <span
+class="math inline">\(O(n\cdot 2^w \cdot w)\)</span>。</p>
+<h3 id="code-time">Code Time！</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50005</span>,M=<span class="number">55</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;a=(a+b)%mod;&#125;</span><br><span class="line"><span class="type">int</span> n,m,ans,ed=<span class="number">1023</span>;</span><br><span class="line"><span class="type">bool</span> ok[M][M];</span><br><span class="line"><span class="type">int</span> cur,f[<span class="number">2</span>][<span class="number">1024</span>];</span><br><span class="line"><span class="type">int</span> rst[N],jia[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            ok[i][j]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)cin&gt;&gt;u&gt;&gt;v,ok[v][u]=<span class="number">0</span>,ok[u][v]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        rst[i]=ed;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            <span class="keyword">if</span>(!ok[i][j])rst[i]^=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(ok[i][j])jia[i]|=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">    &#125;</span><br><span class="line">    cur=<span class="number">0</span>,f[cur][ed]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cur^=<span class="number">1</span>,<span class="built_in">memset</span>(f[cur],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[cur]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=ed;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[cur^<span class="number">1</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            f[cur^<span class="number">1</span>][j]%=mod;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">10</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!((j&gt;&gt;k)&amp;<span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> jj=(j&amp;rst[k])|jia[k];</span><br><span class="line">                f[cur][jj]+=f[cur^<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=ed;i++)<span class="built_in">add</span>(ans,f[cur][i]);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> aqx=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(aqx--)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+        <category>Codeforces</category>
+      </categories>
+      <tags>
+        <tag>OI</tag>
+        <tag>计数</tag>
+        <tag>dp</tag>
+        <tag>dp状态设计</tag>
+        <tag>CF*2800</tag>
       </tags>
   </entry>
 </search>
