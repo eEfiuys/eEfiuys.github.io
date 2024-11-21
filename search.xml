@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/11/01/hello-world/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p><strong>Run commands in E:\github\blog.</strong></p>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="quick-preview">Quick preview</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
+<h3 id="quick-deploy">Quick deploy</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
+<h2 id="post-settings">Post settings</h2>
+<h3 id="where-are-they">Where are they?</h3>
+<p>E:\github\blog\source\_posts</p>
+<h3 id="add-to-categories">Add to categories</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
+<h3 id="add-tags">Add tags</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
+<h3 id="pin-to-top">Pin to top</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
+<h3 id="hide-article">Hide article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
+<h3 id="encrypt-article">Encrypt article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
+<h3 id="insert-image">Insert image</h3>
+<p>A folder with the same name will be created when
+<code>hexo n ""</code>. Put images in this folder and then use
+<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
+on home page.</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Guideline</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1679F 题解</title>
+    <url>/2024/11/19/CF1679F-%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<p><strong>Difficulty: *2600</strong><br />
+Duel 的时候花了 27min47s 把对面秒了。</p>
+<p>显然有若干个等价类，所以只需要对等价类计数就好。<br />
+每个等价类只取最小的数作为代表，所以就是要求出，有多少个 <span
+class="math inline">\(n\)</span>
+位数，使得它<strong>不能通过操作变得更小</strong>。</p>
+<p>设 <span class="math inline">\(ok_{u,v}=\text{true}\)</span>
+表示输入中<strong>不存在</strong>无序对 <span
+class="math inline">\((u,v)\)</span>。<br />
+考虑什么时候可以在下一位填一个 <span
+class="math inline">\(k\)</span>，就是，填上 <span
+class="math inline">\(k\)</span>
+之后，往前一直能换就换，过程中不能碰到一个大于 <span
+class="math inline">\(k\)</span> 的。<br />
+所以当这一位填了 <span class="math inline">\(x\)</span> 之后：</p>
+<ul>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{true}\)</span> 的
+<span class="math inline">\(k\)</span> 都可以填在下一位（这里面包括
+<span class="math inline">\(x=k\)</span>），<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&lt;x\)</span> 的 <span class="math inline">\(k\)</span>
+都不能填在下一位，<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&gt;x\)</span> 的 <span
+class="math inline">\(k\)</span>，这一位能填的下一位也可以，这一位不能填的下一位也不行。</li>
+</ul>
+<p>立即有 <span class="math inline">\(f_{i,sta}\)</span>
+表示，现在填完了从高到低前 <span class="math inline">\(i\)</span>
+位，下一位能填的数的集合为 <span
+class="math inline">\(sta\)</span>，有多少种方案。枚举下一位填的数 <span
+class="math inline">\(k\)</span>，即得 <span
+class="math inline">\(sta&#39;\)</span>，转移即可。<br />
+令 <span class="math inline">\(w=10\)</span>，时间复杂度 <span
+class="math inline">\(O(n\cdot 2^w \cdot w)\)</span>。</p>
+<h3 id="code-time">Code Time！</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50005</span>,M=<span class="number">55</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;a=(a+b)%mod;&#125;</span><br><span class="line"><span class="type">int</span> n,m,ans,ed=<span class="number">1023</span>;</span><br><span class="line"><span class="type">bool</span> ok[M][M];</span><br><span class="line"><span class="type">int</span> cur,f[<span class="number">2</span>][<span class="number">1024</span>];</span><br><span class="line"><span class="type">int</span> rst[N],jia[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            ok[i][j]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)cin&gt;&gt;u&gt;&gt;v,ok[v][u]=<span class="number">0</span>,ok[u][v]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        rst[i]=ed;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            <span class="keyword">if</span>(!ok[i][j])rst[i]^=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(ok[i][j])jia[i]|=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">    &#125;</span><br><span class="line">    cur=<span class="number">0</span>,f[cur][ed]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cur^=<span class="number">1</span>,<span class="built_in">memset</span>(f[cur],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[cur]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=ed;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[cur^<span class="number">1</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            f[cur^<span class="number">1</span>][j]%=mod;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">10</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!((j&gt;&gt;k)&amp;<span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> jj=(j&amp;rst[k])|jia[k];</span><br><span class="line">                f[cur][jj]+=f[cur^<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=ed;i++)<span class="built_in">add</span>(ans,f[cur][i]);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> aqx=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(aqx--)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+        <category>Codeforces</category>
+      </categories>
+      <tags>
+        <tag>OI</tag>
+        <tag>计数</tag>
+        <tag>dp</tag>
+        <tag>dp状态设计</tag>
+        <tag>CF*2800</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ARC083F 题解</title>
     <url>/2024/11/02/ARC083F-%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h3 id="preface">Preface</h3>
@@ -145,120 +259,6 @@ class="math inline">\(O(n)\)</span>！</p>
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/11/01/hello-world/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p><strong>Run commands in E:\github\blog.</strong></p>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="quick-preview">Quick preview</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
-<h3 id="quick-deploy">Quick deploy</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
-<h2 id="post-settings">Post settings</h2>
-<h3 id="where-are-they">Where are they?</h3>
-<p>E:\github\blog\source\_posts</p>
-<h3 id="add-to-categories">Add to categories</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
-<h3 id="add-tags">Add tags</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
-<h3 id="pin-to-top">Pin to top</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
-<h3 id="hide-article">Hide article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
-<h3 id="encrypt-article">Encrypt article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
-<h3 id="insert-image">Insert image</h3>
-<p>A folder with the same name will be created when
-<code>hexo n ""</code>. Put images in this folder and then use
-<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
-on home page.</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Operation</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1679F 题解</title>
-    <url>/2024/11/19/CF1679F-%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<p><strong>Difficulty: *2600</strong><br />
-Duel 的时候花了 27min47s 把对面秒了。</p>
-<p>显然有若干个等价类，所以只需要对等价类计数就好。<br />
-每个等价类只取最小的数作为代表，所以就是要求出，有多少个 <span
-class="math inline">\(n\)</span>
-位数，使得它<strong>不能通过操作变得更小</strong>。</p>
-<p>设 <span class="math inline">\(ok_{u,v}=\text{true}\)</span>
-表示输入中<strong>不存在</strong>无序对 <span
-class="math inline">\((u,v)\)</span>。<br />
-考虑什么时候可以在下一位填一个 <span
-class="math inline">\(k\)</span>，就是，填上 <span
-class="math inline">\(k\)</span>
-之后，往前一直能换就换，过程中不能碰到一个大于 <span
-class="math inline">\(k\)</span> 的。<br />
-所以当这一位填了 <span class="math inline">\(x\)</span> 之后：</p>
-<ul>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{true}\)</span> 的
-<span class="math inline">\(k\)</span> 都可以填在下一位（这里面包括
-<span class="math inline">\(x=k\)</span>），<br />
-</li>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
-k&lt;x\)</span> 的 <span class="math inline">\(k\)</span>
-都不能填在下一位，<br />
-</li>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
-k&gt;x\)</span> 的 <span
-class="math inline">\(k\)</span>，这一位能填的下一位也可以，这一位不能填的下一位也不行。</li>
-</ul>
-<p>立即有 <span class="math inline">\(f_{i,sta}\)</span>
-表示，现在填完了从高到低前 <span class="math inline">\(i\)</span>
-位，下一位能填的数的集合为 <span
-class="math inline">\(sta\)</span>，有多少种方案。枚举下一位填的数 <span
-class="math inline">\(k\)</span>，即得 <span
-class="math inline">\(sta&#39;\)</span>，转移即可。<br />
-令 <span class="math inline">\(w=10\)</span>，时间复杂度 <span
-class="math inline">\(O(n\cdot 2^w \cdot w)\)</span>。</p>
-<h3 id="code-time">Code Time！</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50005</span>,M=<span class="number">55</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;a=(a+b)%mod;&#125;</span><br><span class="line"><span class="type">int</span> n,m,ans,ed=<span class="number">1023</span>;</span><br><span class="line"><span class="type">bool</span> ok[M][M];</span><br><span class="line"><span class="type">int</span> cur,f[<span class="number">2</span>][<span class="number">1024</span>];</span><br><span class="line"><span class="type">int</span> rst[N],jia[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            ok[i][j]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)cin&gt;&gt;u&gt;&gt;v,ok[v][u]=<span class="number">0</span>,ok[u][v]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        rst[i]=ed;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            <span class="keyword">if</span>(!ok[i][j])rst[i]^=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(ok[i][j])jia[i]|=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">    &#125;</span><br><span class="line">    cur=<span class="number">0</span>,f[cur][ed]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cur^=<span class="number">1</span>,<span class="built_in">memset</span>(f[cur],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[cur]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=ed;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[cur^<span class="number">1</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            f[cur^<span class="number">1</span>][j]%=mod;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">10</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!((j&gt;&gt;k)&amp;<span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> jj=(j&amp;rst[k])|jia[k];</span><br><span class="line">                f[cur][jj]+=f[cur^<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=ed;i++)<span class="built_in">add</span>(ans,f[cur][i]);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> aqx=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(aqx--)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-        <category>Codeforces</category>
-      </categories>
-      <tags>
-        <tag>OI</tag>
-        <tag>计数</tag>
-        <tag>dp</tag>
-        <tag>dp状态设计</tag>
-        <tag>CF*2800</tag>
       </tags>
   </entry>
 </search>
