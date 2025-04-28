@@ -117,7 +117,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -127,7 +127,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">10</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -292,6 +292,191 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/28/I-cant-believe-it-can-sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar-xyf.png">
+      <meta itemprop="name" content="飞柴">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eEfiuysの小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/04/28/I-cant-believe-it-can-sort/" class="post-title-link" itemprop="url">I cant believe it can sort</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-04-28 16:46:42 / 修改时间：16:50:00" itemprop="dateCreated datePublished" datetime="2025-04-28T16:46:42+08:00">2025-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>731</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="i-cant-believe-it-can-sort">I can't believe it can sort!</h3>
+<p>对长度为 <span class="math inline">\(n\)</span> 的排列 <span
+class="math inline">\(a\)</span> 执行如下操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])<span class="built_in">swap</span>(a[i],a[j]),cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol type="1">
+<li><p>证明：执行后 <span class="math inline">\(a\)</span>
+递减。</p></li>
+<li><p>设 <span class="math inline">\(a\)</span> 在所有长度为 <span
+class="math inline">\(n\)</span> 的排列中均匀随机，求交换次数的期望，即
+<span class="math inline">\(E(cnt)\)</span>。</p></li>
+<li><p><strong>证明</strong>：</p></li>
+</ol>
+<p>归纳可证，第一重循环执行完前 <span class="math inline">\(i\)</span>
+层后，<span class="math inline">\(a_i=1\)</span> 且 <span
+class="math inline">\(a_1,a_2,\dots,a_i\)</span> 递减。</p>
+<ol start="2" type="1">
+<li><strong>解</strong>：</li>
+</ol>
+<p>设前缀 <span class="math inline">\(\min\)</span> 序列为 <span
+class="math inline">\(b_1,b_2,\dots,b_k,1\)</span>。</p>
+<p>第一层（即第一重循环 <span class="math inline">\(i=1\)</span>
+时）操作为将 <span class="math inline">\(b\)</span> 向右循环移位，变为
+<span class="math inline">\(1,b_1,b_2,\dots,b_k\)</span>，交换次数期望为
+<span class="math inline">\(E(k)=H_n-1\)</span>（<span
+class="math inline">\(H_n=\sum_{i=1}^{n}\frac{1}{i}\)</span>）。</p>
+<p>对 <span class="math inline">\(i\)</span> 的操作即为从前往后枚举
+<span class="math inline">\(a_j&lt;a_i\)</span> 并交换 <span
+class="math inline">\(a_i,a_j\)</span>。因为 <span
+class="math inline">\(a_1,a_2,\dots a_{i-1}\)</span>
+降序，所以交换后不影响大小关系；又因为操作完 <span
+class="math inline">\(j&lt;i\)</span> 后，<span
+class="math inline">\(a_i=1\)</span>，所以不会有 <span
+class="math inline">\(j&gt;i\)</span>
+的操作。故操作次数为全局顺序对个数。</p>
+<p>现在假设第一层操作是变为 <span
+class="math inline">\(1,b_2,b_3,\dots,b_k,b_1\)</span>，则 <span
+class="math inline">\(a_2,a_3,\dots,a_n\)</span>
+均匀分布。由于前面固定有一个 <span
+class="math inline">\(1\)</span>，故顺序对个数期望为：</p>
+<p><span
+class="math display">\[n-1+\frac{(n-1)(n-2)}{4}=\frac{n(n-1)}{4}+\frac{n-1}{2}\]</span>。</p>
+<p>接下来考虑，这样比实际情况多算了多少顺序对。对比 <span
+class="math inline">\(b_1,b_2,\dots,b_k\)</span> 和 <span
+class="math inline">\(b_2,b_3,\dots,b_k,b_1\)</span>（<span
+class="math inline">\(b_1&gt;b_2&gt;\dots&gt;b_k\)</span>）。令 <span
+class="math inline">\(c\)</span> 为除了 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(b\)</span> 以外的序列，<span
+class="math inline">\(p_x\)</span> 为 <span
+class="math inline">\(x\)</span> 在原序列上的位置。称 <span
+class="math inline">\(a&#39;\)</span> 为第一层操作后的实际序列，<span
+class="math inline">\(a&#39;&#39;\)</span> 为上述假设得到的序列。</p>
+<p>当 <span class="math inline">\(k=0\)</span> 即 <span
+class="math inline">\(a_1=1\)</span> 时，显然没有多算。</p>
+<p>当 <span class="math inline">\(k&gt;0\)</span> 时，先对于某个排列
+<span class="math inline">\(a\)</span>
+求出来一个可以算出期望的式子：</p>
+<p><span class="math inline">\(b\)</span> 内部多算了 <span
+class="math inline">\(k-1\)</span>；<span
+class="math inline">\(c\)</span> 内部不变。对于 <span
+class="math inline">\(b\)</span> 和 <span
+class="math inline">\(c\)</span> 之间的顺序对：</p>
+<ul>
+<li>如果 <span class="math inline">\(c_i&gt;b_1\)</span>，贡献为 <span
+class="math inline">\(0\)</span>。</li>
+<li>如果 <span class="math inline">\(b_1&gt;c_i&gt;b_k\)</span>，设
+<span class="math inline">\(b_{x-1}&gt;c_i&gt;b_x\)</span>，则 <span
+class="math inline">\(p_{c_i}&gt;p_{b_x}\)</span>。如果 <span
+class="math inline">\(p_{c_i}&lt;p_1\)</span>，则贡献为 <span
+class="math inline">\(2\)</span>，否则为 <span
+class="math inline">\(0\)</span>。</li>
+<li>如果 <span class="math inline">\(c_i&lt;b_k\)</span>，贡献为 <span
+class="math inline">\(0\)</span>。</li>
+</ul>
+<p>所以需要求，<span class="math inline">\(b_1&gt;x&gt;b_k\)</span> 且
+<span class="math inline">\(p_{x}&lt;p_1\)</span> 且 <span
+class="math inline">\(x \notin b\)</span> 的 <span
+class="math inline">\(x\)</span> 的个数。发现如果 <span
+class="math inline">\(x&lt;b_k\)</span>，则一定有 <span
+class="math inline">\(p_x&gt;p_1\)</span>。将限制改为 <span
+class="math inline">\(b_1 \geq x&gt;1\)</span> 且 <span
+class="math inline">\(p_{x}&lt;p_1\)</span>，去掉 <span
+class="math inline">\(x \notin b\)</span> 的限制，设这样的 <span
+class="math inline">\(x\)</span> 的个数为 <span
+class="math inline">\(u\)</span>，则贡献为 <span
+class="math inline">\(2(u-k)\)</span>。</p>
+<p>所以这部分的总贡献为 <span
+class="math inline">\(2u-k-1\)</span>。发现当 <span
+class="math inline">\(a_1=1\)</span> 时，<span
+class="math inline">\(u=k=0\)</span>，按照这个式子算出来是 <span
+class="math inline">\(-1\)</span> 而不是 <span
+class="math inline">\(0\)</span>，需要加回去，所以期望贡献为 <span
+class="math inline">\(2E(u)-E(k)-1+\frac{1}{n}\)</span>。</p>
+<p><span
+class="math display">\[E(u)=\frac{1}{n}\sum_{i=2}^{n}\left(\frac{1}{n-1}\sum_{j=2}^{n}\left(1+\frac{(i-2)(j-2)}{n-2}\right)\right)=\frac{n+1}{4}-\frac{1}{2n}\]</span></p>
+<p><span
+class="math display">\[2E(u)-E(k)-1+\frac{1}{n}=\frac{n+1}{2}-H(n)+1\]</span></p>
+<p>所以交换次数的期望为：</p>
+<p><span
+class="math display">\[E(cnt)=H_n+\left(\frac{n(n-1)}{4}+\frac{n-1}{2}\right)-\left(\frac{n+1}{2}-H(n)+1\right)=2H_n+\frac{n(n-1)}{4}-2\]</span>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
 
@@ -360,7 +545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -373,7 +558,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -409,12 +594,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">9k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">33 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
