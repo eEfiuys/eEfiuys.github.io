@@ -1,77 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CF1679F 题解</title>
-    <url>/2024/11/19/CF1679F-%E9%A2%98%E8%A7%A3/</url>
-    <content><![CDATA[<h3 id="题意">题意</h3>
-<p>给定 <span class="math inline">\(m\)</span>
-组<strong>无序</strong>数对 <span
-class="math inline">\((u_i,v_i)\)</span>。<br />
-对于 <span class="math inline">\(n\)</span> 位十进制整数 <span
-class="math inline">\(A\)</span>（可以有前导 <span
-class="math inline">\(0\)</span>），若 <span
-class="math inline">\(A\)</span> 的相邻两位数 <span
-class="math inline">\((x,y)\)</span> 存在于这 <span
-class="math inline">\(m\)</span> 个数对当中，则可以交换这两位。若 <span
-class="math inline">\(A\)</span> 可以通过若干次操作变成 <span
-class="math inline">\(B\)</span>，则称 <span
-class="math inline">\(A\)</span> 和 <span
-class="math inline">\(B\)</span> 等价。</p>
-<p>求出最大整数 <span
-class="math inline">\(k\)</span>，使得存在一组非负整数 <span
-class="math inline">\(x_1,x_2,\ldots,x_k(0\leq x_i&lt;10^n)\)</span>
-满足对于任意 <span class="math inline">\(1\leq i&lt;j\leq
-k\)</span>，<span class="math inline">\(x_i\)</span> 与 <span
-class="math inline">\(x_j\)</span> 不等价。</p>
-<p><span class="math inline">\(n \leq 50000\)</span></p>
-<p><strong>Difficulty: *2600</strong></p>
-<h3 id="题解">题解</h3>
-<p>显然有若干个等价类，所以只需要对等价类计数就好。<br />
-每个等价类只取最小的数作为代表，所以就是要求出，有多少个 <span
-class="math inline">\(n\)</span>
-位数，使得它<strong>不能通过操作变得更小</strong>。</p>
-<p>设 <span class="math inline">\(ok_{u,v}=\text{true}\)</span>
-表示输入中<strong>不存在</strong>无序对 <span
-class="math inline">\((u,v)\)</span>。<br />
-考虑什么时候可以在下一位填一个 <span
-class="math inline">\(k\)</span>，就是，填上 <span
-class="math inline">\(k\)</span>
-之后，往前一直能换就换，过程中不能碰到一个大于 <span
-class="math inline">\(k\)</span> 的。<br />
-所以当这一位填了 <span class="math inline">\(x\)</span> 之后：</p>
-<ul>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{true}\)</span> 的
-<span class="math inline">\(k\)</span> 都可以填在下一位（这里面包括
-<span class="math inline">\(x=k\)</span>），<br />
-</li>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
-k&lt;x\)</span> 的 <span class="math inline">\(k\)</span>
-都不能填在下一位，<br />
-</li>
-<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
-k&gt;x\)</span> 的 <span
-class="math inline">\(k\)</span>，这一位能填的下一位也可以，这一位不能填的下一位也不行。</li>
-</ul>
-<p>立即有 <span class="math inline">\(f_{i,sta}\)</span>
-表示，现在填完了从高到低前 <span class="math inline">\(i\)</span>
-位，下一位能填的数的集合为 <span
-class="math inline">\(sta\)</span>，有多少种方案。枚举下一位填的数 <span
-class="math inline">\(k\)</span>，即得 <span
-class="math inline">\(sta&#39;\)</span>，转移即可。<br />
-令 <span class="math inline">\(w=10\)</span>，时间复杂度 <span
-class="math inline">\(O(n\cdot 2^w \cdot w)\)</span>。</p>
-<h3 id="code-time">Code Time！</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50005</span>,M=<span class="number">55</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;a=(a+b)%mod;&#125;</span><br><span class="line"><span class="type">int</span> n,m,ans,ed=<span class="number">1023</span>;</span><br><span class="line"><span class="type">bool</span> ok[M][M];</span><br><span class="line"><span class="type">int</span> cur,f[<span class="number">2</span>][<span class="number">1024</span>];</span><br><span class="line"><span class="type">int</span> rst[N],jia[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            ok[i][j]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)cin&gt;&gt;u&gt;&gt;v,ok[v][u]=<span class="number">0</span>,ok[u][v]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        rst[i]=ed;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            <span class="keyword">if</span>(!ok[i][j])rst[i]^=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(ok[i][j])jia[i]|=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">    &#125;</span><br><span class="line">    cur=<span class="number">0</span>,f[cur][ed]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cur^=<span class="number">1</span>,<span class="built_in">memset</span>(f[cur],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[cur]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=ed;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[cur^<span class="number">1</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            f[cur^<span class="number">1</span>][j]%=mod;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">10</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!((j&gt;&gt;k)&amp;<span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> jj=(j&amp;rst[k])|jia[k];</span><br><span class="line">                f[cur][jj]+=f[cur^<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=ed;i++)<span class="built_in">add</span>(ans,f[cur][i]);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> aqx=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(aqx--)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>计数</tag>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ARC083F 题解</title>
     <url>/2024/11/02/ARC083F-%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h3 id="题意">题意</h3>
@@ -170,6 +99,193 @@ class="math inline">\(O(n)\)</span>！</p>
       <tags>
         <tag>计数</tag>
         <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>I cant believe it can sort</title>
+    <url>/2025/04/28/I-cant-believe-it-can-sort/</url>
+    <content><![CDATA[<h3 id="i-cant-believe-it-can-sort">I can't believe it can sort！</h3>
+<p>对长度为 <span class="math inline">\(n\)</span> 的排列 <span
+class="math inline">\(a\)</span> 执行如下操作：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])<span class="built_in">swap</span>(a[i],a[j]),cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）证明：执行后 <span class="math inline">\(a\)</span> 递减。</p>
+<p>（2）设 <span class="math inline">\(a\)</span> 在所有长度为 <span
+class="math inline">\(n\)</span> 的排列中均匀随机，求交换次数的期望，即
+<span class="math inline">\(E(cnt)\)</span>。</p>
+<p>（1）<strong>证明</strong>：</p>
+<p>归纳可证，第一重循环执行完前 <span class="math inline">\(i\)</span>
+层后，<span class="math inline">\(a_i=1\)</span> 且 <span
+class="math inline">\(a_1,a_2,\dots,a_i\)</span> 递减。</p>
+<p>（2）<strong>解</strong>：</p>
+<p>设前缀 <span class="math inline">\(\min\)</span> 序列为 <span
+class="math inline">\(b_1,b_2,\dots,b_k,1\)</span>。</p>
+<p>第一层（即第一重循环 <span class="math inline">\(i=1\)</span>
+时）操作为将 <span class="math inline">\(b\)</span> 向右循环移位，变为
+<span class="math inline">\(1,b_1,b_2,\dots,b_k\)</span>，交换次数期望为
+<span class="math inline">\(E(k)=H_n-1\)</span>（<span
+class="math inline">\(H_n=\sum_{i=1}^{n}\frac{1}{i}\)</span>）。</p>
+<p>对 <span class="math inline">\(i\)</span> 的操作即为从前往后枚举
+<span class="math inline">\(a_j&lt;a_i\)</span> 并交换 <span
+class="math inline">\(a_i,a_j\)</span>。因为 <span
+class="math inline">\(a_1,a_2,\dots a_{i-1}\)</span>
+降序，所以交换后不影响大小关系；又因为操作完 <span
+class="math inline">\(j&lt;i\)</span> 后，<span
+class="math inline">\(a_i=1\)</span>，所以不会有 <span
+class="math inline">\(j&gt;i\)</span>
+的操作。故操作次数为全局顺序对个数。</p>
+<p>现在假设第一层操作是变为 <span
+class="math inline">\(1,b_2,b_3,\dots,b_k,b_1\)</span>，则 <span
+class="math inline">\(a_2,a_3,\dots,a_n\)</span>
+均匀分布。由于前面固定有一个 <span
+class="math inline">\(1\)</span>，故顺序对个数期望为：</p>
+<p><span
+class="math display">\[n-1+\frac{(n-1)(n-2)}{4}=\frac{n(n-1)}{4}+\frac{n-1}{2}\]</span>。</p>
+<p>接下来考虑，这样比实际情况多算了多少顺序对。对比 <span
+class="math inline">\(b_1,b_2,\dots,b_k\)</span> 和 <span
+class="math inline">\(b_2,b_3,\dots,b_k,b_1\)</span>（<span
+class="math inline">\(b_1&gt;b_2&gt;\dots&gt;b_k\)</span>）。令 <span
+class="math inline">\(c\)</span> 为除了 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(b\)</span> 以外的序列，<span
+class="math inline">\(p_x\)</span> 为 <span
+class="math inline">\(x\)</span> 在原序列上的位置。称 <span
+class="math inline">\(a&#39;\)</span> 为第一层操作后的实际序列，<span
+class="math inline">\(a&#39;&#39;\)</span> 为上述假设得到的序列。</p>
+<p>当 <span class="math inline">\(k=0\)</span> 即 <span
+class="math inline">\(a_1=1\)</span> 时，显然没有多算。</p>
+<p>当 <span class="math inline">\(k&gt;0\)</span> 时，先对于某个排列
+<span class="math inline">\(a\)</span>
+求出来一个可以算出期望的式子：</p>
+<p><span class="math inline">\(b\)</span> 内部多算了 <span
+class="math inline">\(k-1\)</span>；<span
+class="math inline">\(c\)</span> 内部不变。对于 <span
+class="math inline">\(b\)</span> 和 <span
+class="math inline">\(c\)</span> 之间的顺序对：</p>
+<ul>
+<li>如果 <span class="math inline">\(c_i&gt;b_1\)</span>，贡献为 <span
+class="math inline">\(0\)</span>。</li>
+<li>如果 <span class="math inline">\(b_1&gt;c_i&gt;b_k\)</span>，设
+<span class="math inline">\(b_{x-1}&gt;c_i&gt;b_x\)</span>，则 <span
+class="math inline">\(p_{c_i}&gt;p_{b_x}\)</span>。如果 <span
+class="math inline">\(p_{c_i}&lt;p_1\)</span>，则贡献为 <span
+class="math inline">\(2\)</span>，否则为 <span
+class="math inline">\(0\)</span>。</li>
+<li>如果 <span class="math inline">\(c_i&lt;b_k\)</span>，贡献为 <span
+class="math inline">\(0\)</span>。</li>
+</ul>
+<p>所以需要求，<span class="math inline">\(b_1&gt;x&gt;b_k\)</span> 且
+<span class="math inline">\(p_{x}&lt;p_1\)</span> 且 <span
+class="math inline">\(x \notin b\)</span> 的 <span
+class="math inline">\(x\)</span> 的个数。发现如果 <span
+class="math inline">\(x&lt;b_k\)</span>，则一定有 <span
+class="math inline">\(p_x&gt;p_1\)</span>。将限制改为 <span
+class="math inline">\(b_1 \geq x&gt;1\)</span> 且 <span
+class="math inline">\(p_{x}&lt;p_1\)</span>，去掉 <span
+class="math inline">\(x \notin b\)</span> 的限制，设这样的 <span
+class="math inline">\(x\)</span> 的个数为 <span
+class="math inline">\(u\)</span>，则贡献为 <span
+class="math inline">\(2(u-k)\)</span>。</p>
+<p>所以这部分的总贡献为 <span
+class="math inline">\(2u-k-1\)</span>。发现当 <span
+class="math inline">\(a_1=1\)</span> 时，<span
+class="math inline">\(u=k=0\)</span>，按照这个式子算出来是 <span
+class="math inline">\(-1\)</span> 而不是 <span
+class="math inline">\(0\)</span>，需要加回去，所以期望贡献为 <span
+class="math inline">\(2E(u)-E(k)-1+\frac{1}{n}\)</span>。</p>
+<p><span
+class="math display">\[E(u)=\frac{1}{n}\sum_{i=2}^{n}\left(\frac{1}{n-1}\sum_{j=2}^{n}\left(1+\frac{(i-2)(j-2)}{n-2}\right)\right)=\frac{n+1}{4}-\frac{1}{2n}\]</span></p>
+<p><span
+class="math display">\[2E(u)-E(k)-1+\frac{1}{n}=\frac{n+1}{2}-H(n)+1\]</span></p>
+<p>所以交换次数的期望为：</p>
+<p><span
+class="math display">\[E(cnt)=H_n+\left(\frac{n(n-1)}{4}+\frac{n-1}{2}\right)-\left(\frac{n+1}{2}-H(n)+1\right)=2H_n+\frac{n(n-1)}{4}-2\]</span>。</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>期望</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Image-tester</title>
+    <url>/2024/11/04/Image-tester/</url>
+    <content><![CDATA[<p><img src="background.png" /></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Test</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>CF1679F 题解</title>
+    <url>/2024/11/19/CF1679F-%E9%A2%98%E8%A7%A3/</url>
+    <content><![CDATA[<h3 id="题意">题意</h3>
+<p>给定 <span class="math inline">\(m\)</span>
+组<strong>无序</strong>数对 <span
+class="math inline">\((u_i,v_i)\)</span>。<br />
+对于 <span class="math inline">\(n\)</span> 位十进制整数 <span
+class="math inline">\(A\)</span>（可以有前导 <span
+class="math inline">\(0\)</span>），若 <span
+class="math inline">\(A\)</span> 的相邻两位数 <span
+class="math inline">\((x,y)\)</span> 存在于这 <span
+class="math inline">\(m\)</span> 个数对当中，则可以交换这两位。若 <span
+class="math inline">\(A\)</span> 可以通过若干次操作变成 <span
+class="math inline">\(B\)</span>，则称 <span
+class="math inline">\(A\)</span> 和 <span
+class="math inline">\(B\)</span> 等价。</p>
+<p>求出最大整数 <span
+class="math inline">\(k\)</span>，使得存在一组非负整数 <span
+class="math inline">\(x_1,x_2,\ldots,x_k(0\leq x_i&lt;10^n)\)</span>
+满足对于任意 <span class="math inline">\(1\leq i&lt;j\leq
+k\)</span>，<span class="math inline">\(x_i\)</span> 与 <span
+class="math inline">\(x_j\)</span> 不等价。</p>
+<p><span class="math inline">\(n \leq 50000\)</span></p>
+<p><strong>Difficulty: *2600</strong></p>
+<h3 id="题解">题解</h3>
+<p>显然有若干个等价类，所以只需要对等价类计数就好。<br />
+每个等价类只取最小的数作为代表，所以就是要求出，有多少个 <span
+class="math inline">\(n\)</span>
+位数，使得它<strong>不能通过操作变得更小</strong>。</p>
+<p>设 <span class="math inline">\(ok_{u,v}=\text{true}\)</span>
+表示输入中<strong>不存在</strong>无序对 <span
+class="math inline">\((u,v)\)</span>。<br />
+考虑什么时候可以在下一位填一个 <span
+class="math inline">\(k\)</span>，就是，填上 <span
+class="math inline">\(k\)</span>
+之后，往前一直能换就换，过程中不能碰到一个大于 <span
+class="math inline">\(k\)</span> 的。<br />
+所以当这一位填了 <span class="math inline">\(x\)</span> 之后：</p>
+<ul>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{true}\)</span> 的
+<span class="math inline">\(k\)</span> 都可以填在下一位（这里面包括
+<span class="math inline">\(x=k\)</span>），<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&lt;x\)</span> 的 <span class="math inline">\(k\)</span>
+都不能填在下一位，<br />
+</li>
+<li>所有 <span class="math inline">\(ok_{x,k}=\text{false} \ \wedge \
+k&gt;x\)</span> 的 <span
+class="math inline">\(k\)</span>，这一位能填的下一位也可以，这一位不能填的下一位也不行。</li>
+</ul>
+<p>立即有 <span class="math inline">\(f_{i,sta}\)</span>
+表示，现在填完了从高到低前 <span class="math inline">\(i\)</span>
+位，下一位能填的数的集合为 <span
+class="math inline">\(sta\)</span>，有多少种方案。枚举下一位填的数 <span
+class="math inline">\(k\)</span>，即得 <span
+class="math inline">\(sta&#39;\)</span>，转移即可。<br />
+令 <span class="math inline">\(w=10\)</span>，时间复杂度 <span
+class="math inline">\(O(n\cdot 2^w \cdot w)\)</span>。</p>
+<h3 id="code-time">Code Time！</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">int</span> inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50005</span>,M=<span class="number">55</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;a=(a+b)%mod;&#125;</span><br><span class="line"><span class="type">int</span> n,m,ans,ed=<span class="number">1023</span>;</span><br><span class="line"><span class="type">bool</span> ok[M][M];</span><br><span class="line"><span class="type">int</span> cur,f[<span class="number">2</span>][<span class="number">1024</span>];</span><br><span class="line"><span class="type">int</span> rst[N],jia[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            ok[i][j]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)cin&gt;&gt;u&gt;&gt;v,ok[v][u]=<span class="number">0</span>,ok[u][v]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        rst[i]=ed;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            <span class="keyword">if</span>(!ok[i][j])rst[i]^=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">            <span class="keyword">if</span>(ok[i][j])jia[i]|=(<span class="number">1</span>&lt;&lt;j);</span><br><span class="line">    &#125;</span><br><span class="line">    cur=<span class="number">0</span>,f[cur][ed]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cur^=<span class="number">1</span>,<span class="built_in">memset</span>(f[cur],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[cur]));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=ed;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[cur^<span class="number">1</span>][j])<span class="keyword">continue</span>;</span><br><span class="line">            f[cur^<span class="number">1</span>][j]%=mod;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">10</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!((j&gt;&gt;k)&amp;<span class="number">1</span>))<span class="keyword">continue</span>;</span><br><span class="line">                <span class="type">int</span> jj=(j&amp;rst[k])|jia[k];</span><br><span class="line">                f[cur][jj]+=f[cur^<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=ed;i++)<span class="built_in">add</span>(ans,f[cur][i]);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> aqx=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(aqx--)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>计数</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -310,121 +426,81 @@ class="math inline">\(0\)</span>，和同一行/列操作即可。</p>
       </tags>
   </entry>
   <entry>
-    <title>Image-tester</title>
-    <url>/2024/11/04/Image-tester/</url>
-    <content><![CDATA[<p><img src="background.png" /></p>
-]]></content>
+    <title>Password tester(123456)</title>
+    <url>/2024/11/03/Password-tester/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ecd3cd297b4b8c955353f80717691ab0653cf1776ca474cdadf10ad8e665c6da">4630436162ade97ba2718b7d0c4b3b633edd16a8c78b7d4a375abf0237cd065b1fdd7fe03f8f5b88b0b2ae7e4e8ad067</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>Hexo</category>
         <category>Test</category>
       </categories>
   </entry>
   <entry>
-    <title>I cant believe it can sort</title>
-    <url>/2025/04/28/I-cant-believe-it-can-sort/</url>
-    <content><![CDATA[<h3 id="i-cant-believe-it-can-sort">I can't believe it can sort!</h3>
-<p>对长度为 <span class="math inline">\(n\)</span> 的排列 <span
-class="math inline">\(a\)</span> 执行如下操作：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;a[j])<span class="built_in">swap</span>(a[i],a[j]),cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(1)证明：执行后 <span class="math inline">\(a\)</span> 递减。</p>
-<p>(2)设 <span class="math inline">\(a\)</span> 在所有长度为 <span
-class="math inline">\(n\)</span> 的排列中均匀随机，求交换次数的期望，即
-<span class="math inline">\(E(cnt)\)</span>。</p>
-<h3 id="solution">Solution</h3>
-<p>(1)<strong>证明</strong>：</p>
-<p>归纳可证，第一重循环执行完前 <span class="math inline">\(i\)</span>
-层后，<span class="math inline">\(a_i=1\)</span> 且 <span
-class="math inline">\(a_1,a_2,\dots,a_i\)</span> 递减。</p>
-<p>(2)<strong>解</strong>：</p>
-<p>设前缀 <span class="math inline">\(\min\)</span> 序列为 <span
-class="math inline">\(b_1,b_2,\dots,b_k,1\)</span>。</p>
-<p>第一层（即第一重循环 <span class="math inline">\(i=1\)</span>
-时）操作为将 <span class="math inline">\(b\)</span> 向右循环移位，变为
-<span class="math inline">\(1,b_1,b_2,\dots,b_k\)</span>，交换次数期望为
-<span class="math inline">\(E(k)=H_n-1\)</span>（<span
-class="math inline">\(H_n=\sum_{i=1}^{n}\frac{1}{i}\)</span>）。</p>
-<p>对 <span class="math inline">\(i\)</span> 的操作即为从前往后枚举
-<span class="math inline">\(a_j&lt;a_i\)</span> 并交换 <span
-class="math inline">\(a_i,a_j\)</span>。因为 <span
-class="math inline">\(a_1,a_2,\dots a_{i-1}\)</span>
-降序，所以交换后不影响大小关系；又因为操作完 <span
-class="math inline">\(j&lt;i\)</span> 后，<span
-class="math inline">\(a_i=1\)</span>，所以不会有 <span
-class="math inline">\(j&gt;i\)</span>
-的操作。故操作次数为全局顺序对个数。</p>
-<p>现在假设第一层操作是变为 <span
-class="math inline">\(1,b_2,b_3,\dots,b_k,b_1\)</span>，则 <span
-class="math inline">\(a_2,a_3,\dots,a_n\)</span>
-均匀分布。由于前面固定有一个 <span
-class="math inline">\(1\)</span>，故顺序对个数期望为：</p>
-<p><span
-class="math display">\[n-1+\frac{(n-1)(n-2)}{4}=\frac{n(n-1)}{4}+\frac{n-1}{2}\]</span>。</p>
-<p>接下来考虑，这样比实际情况多算了多少顺序对。对比 <span
-class="math inline">\(b_1,b_2,\dots,b_k\)</span> 和 <span
-class="math inline">\(b_2,b_3,\dots,b_k,b_1\)</span>（<span
-class="math inline">\(b_1&gt;b_2&gt;\dots&gt;b_k\)</span>）。令 <span
-class="math inline">\(c\)</span> 为除了 <span
-class="math inline">\(1\)</span> 和 <span
-class="math inline">\(b\)</span> 以外的序列，<span
-class="math inline">\(p_x\)</span> 为 <span
-class="math inline">\(x\)</span> 在原序列上的位置。称 <span
-class="math inline">\(a&#39;\)</span> 为第一层操作后的实际序列，<span
-class="math inline">\(a&#39;&#39;\)</span> 为上述假设得到的序列。</p>
-<p>当 <span class="math inline">\(k=0\)</span> 即 <span
-class="math inline">\(a_1=1\)</span> 时，显然没有多算。</p>
-<p>当 <span class="math inline">\(k&gt;0\)</span> 时，先对于某个排列
-<span class="math inline">\(a\)</span>
-求出来一个可以算出期望的式子：</p>
-<p><span class="math inline">\(b\)</span> 内部多算了 <span
-class="math inline">\(k-1\)</span>；<span
-class="math inline">\(c\)</span> 内部不变。对于 <span
-class="math inline">\(b\)</span> 和 <span
-class="math inline">\(c\)</span> 之间的顺序对：</p>
-<ul>
-<li>如果 <span class="math inline">\(c_i&gt;b_1\)</span>，贡献为 <span
-class="math inline">\(0\)</span>。</li>
-<li>如果 <span class="math inline">\(b_1&gt;c_i&gt;b_k\)</span>，设
-<span class="math inline">\(b_{x-1}&gt;c_i&gt;b_x\)</span>，则 <span
-class="math inline">\(p_{c_i}&gt;p_{b_x}\)</span>。如果 <span
-class="math inline">\(p_{c_i}&lt;p_1\)</span>，则贡献为 <span
-class="math inline">\(2\)</span>，否则为 <span
-class="math inline">\(0\)</span>。</li>
-<li>如果 <span class="math inline">\(c_i&lt;b_k\)</span>，贡献为 <span
-class="math inline">\(0\)</span>。</li>
-</ul>
-<p>所以需要求，<span class="math inline">\(b_1&gt;x&gt;b_k\)</span> 且
-<span class="math inline">\(p_{x}&lt;p_1\)</span> 且 <span
-class="math inline">\(x \notin b\)</span> 的 <span
-class="math inline">\(x\)</span> 的个数。发现如果 <span
-class="math inline">\(x&lt;b_k\)</span>，则一定有 <span
-class="math inline">\(p_x&gt;p_1\)</span>。将限制改为 <span
-class="math inline">\(b_1 \geq x&gt;1\)</span> 且 <span
-class="math inline">\(p_{x}&lt;p_1\)</span>，去掉 <span
-class="math inline">\(x \notin b\)</span> 的限制，设这样的 <span
-class="math inline">\(x\)</span> 的个数为 <span
-class="math inline">\(u\)</span>，则贡献为 <span
-class="math inline">\(2(u-k)\)</span>。</p>
-<p>所以这部分的总贡献为 <span
-class="math inline">\(2u-k-1\)</span>。发现当 <span
-class="math inline">\(a_1=1\)</span> 时，<span
-class="math inline">\(u=k=0\)</span>，按照这个式子算出来是 <span
-class="math inline">\(-1\)</span> 而不是 <span
-class="math inline">\(0\)</span>，需要加回去，所以期望贡献为 <span
-class="math inline">\(2E(u)-E(k)-1+\frac{1}{n}\)</span>。</p>
-<p><span
-class="math display">\[E(u)=\frac{1}{n}\sum_{i=2}^{n}\left(\frac{1}{n-1}\sum_{j=2}^{n}\left(1+\frac{(i-2)(j-2)}{n-2}\right)\right)=\frac{n+1}{4}-\frac{1}{2n}\]</span></p>
-<p><span
-class="math display">\[2E(u)-E(k)-1+\frac{1}{n}=\frac{n+1}{2}-H(n)+1\]</span></p>
-<p>所以交换次数的期望为：</p>
-<p><span
-class="math display">\[E(cnt)=H_n+\left(\frac{n(n-1)}{4}+\frac{n-1}{2}\right)-\left(\frac{n+1}{2}-H(n)+1\right)=2H_n+\frac{n(n-1)}{4}-2\]</span>。</p>
+    <title>Hello World</title>
+    <url>/2024/11/01/hello-world/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p><strong>Run commands at E:\github\blog.</strong></p>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="quick-preview">Quick preview</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
+<h3 id="quick-deploy">Quick deploy</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
+<h2 id="post-settings">Post settings</h2>
+<h3 id="where-are-they">Where are they?</h3>
+<p>E:\github\blog\source\_posts</p>
+<h3 id="add-to-categories">Add to categories</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
+<h3 id="add-tags">Add tags</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
+<h3 id="pin-to-top">Pin to top</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
+<h3 id="hide-article">Hide article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
+<h3 id="encrypt-article">Encrypt article</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
+<h3 id="insert-image">Insert image</h3>
+<p>A folder with the same name will be created when
+<code>hexo n ""</code>. Put images in this folder and then use
+<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
+on home page.</p>
 ]]></content>
       <categories>
-        <category>题解</category>
+        <category>Hexo</category>
+        <category>Guideline</category>
       </categories>
-      <tags>
-        <tag>期望</tag>
-      </tags>
   </entry>
   <entry>
     <title>P10218 省选联考2024D1T2 题解</title>
@@ -551,26 +627,6 @@ class="math inline">\(O(nk)\)</span>。</p>
       </tags>
   </entry>
   <entry>
-    <title>Password tester(123456)</title>
-    <url>/2024/11/03/Password-tester/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="ecd3cd297b4b8c955353f80717691ab0653cf1776ca474cdadf10ad8e665c6da">4630436162ade97ba2718b7d0c4b3b633edd16a8c78b7d4a375abf0237cd065b1fdd7fe03f8f5b88b0b2ae7e4e8ad067</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Test</category>
-      </categories>
-  </entry>
-  <entry>
     <title>后缀自动机SAM板子</title>
     <url>/2025/01/13/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BASAM%E6%9D%BF%E5%AD%90/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="type">int</span> aqx=<span class="number">1</span>,byx=<span class="number">1</span>,inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e6</span><span class="number">+5</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SAM</span>&#123;<span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> tot,lst;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">nod</span>&#123;</span><br><span class="line">        <span class="type">int</span> ch[<span class="number">26</span>],fail,len;</span><br><span class="line">    &#125;t[N*<span class="number">2</span>];</span><br><span class="line">    <span class="type">int</span> sz[N*<span class="number">2</span>]; <span class="comment">// sz[u]=1表示u在主链上；求fail树子树和则为u的出现次数</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;g[N];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">extend</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> p=lst,np=lst=++tot;</span><br><span class="line">        sz[np]=<span class="number">1</span>,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">        <span class="keyword">for</span>(;p&amp;&amp;!t[p].ch[c];p=t[p].fail)t[p].ch[c]=np;</span><br><span class="line">        <span class="keyword">if</span>(!p)&#123;t[np].fail=<span class="number">1</span>;<span class="keyword">return</span>;&#125;</span><br><span class="line">        <span class="type">int</span> q=t[p].ch[c];</span><br><span class="line">        <span class="keyword">if</span>(t[q].len==t[p].len<span class="number">+1</span>)&#123;t[np].fail=q;<span class="keyword">return</span>;&#125;</span><br><span class="line">        <span class="type">int</span> nq=++tot;</span><br><span class="line">        t[nq]=t[q],t[nq].len=t[p].len<span class="number">+1</span>,t[q].fail=t[np].fail=nq;</span><br><span class="line">        <span class="keyword">for</span>(;p&amp;&amp;t[p].ch[c]==q;p=t[p].fail)t[p].ch[c]=nq;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">build</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">        tot=lst=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> ch:s)<span class="built_in">extend</span>(ch-<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> ll <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// fail边一定是len大的连向len小的</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)g[t[i].len].<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=t[lst].len;i;i--)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j:g[i])sz[t[j].fail]+=sz[j];</span><br><span class="line">        ll ret=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=tot;i++)<span class="keyword">if</span>(sz[i]&gt;<span class="number">1</span>)ret=<span class="built_in">max</span>(ret,(ll)sz[i]*t[i].len);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;cin&gt;&gt;s;</span><br><span class="line">    a.<span class="built_in">build</span>(s);</span><br><span class="line">    ll ans=a.<span class="built_in">work</span>();</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>),cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="keyword">for</span>(;byx&lt;=aqx;byx++)<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -582,63 +638,6 @@ class="math inline">\(O(nk)\)</span>。</p>
         <tag>模板</tag>
         <tag>字符串</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/11/01/hello-world/</url>
-    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello world!\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p><strong>Run commands at E:\github\blog.</strong></p>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br><span class="line"><span class="comment"># n -&gt; new</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># s -&gt; server</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># g -&gt; generate</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"><span class="comment"># d -&gt; deploy</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="quick-preview">Quick preview</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh preview.sh</span><br></pre></td></tr></table></figure>
-<h3 id="quick-deploy">Quick deploy</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sh deploy.sh</span><br></pre></td></tr></table></figure>
-<h2 id="post-settings">Post settings</h2>
-<h3 id="where-are-they">Where are they?</h3>
-<p>E:\github\blog\source\_posts</p>
-<h3 id="add-to-categories">Add to categories</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: xxx</span><br></pre></td></tr></table></figure>
-<h3 id="add-tags">Add tags</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tags:</span><br><span class="line">  - tag1</span><br><span class="line">  - tag2</span><br></pre></td></tr></table></figure>
-<h3 id="pin-to-top">Pin to top</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">top: true  #add &quot;置顶&quot;</span><br><span class="line">sticky: x (1~100) #add an icon; set priority</span><br><span class="line"># These are different plugins.</span><br></pre></td></tr></table></figure>
-<h3 id="hide-article">Hide article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">hide: true</span><br><span class="line"># This will hide a post from home page</span><br></pre></td></tr></table></figure>
-<h3 id="encrypt-article">Encrypt article</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># add to front-matter</span><br><span class="line">password: 123456</span><br></pre></td></tr></table></figure>
-<h3 id="insert-image">Insert image</h3>
-<p>A folder with the same name will be created when
-<code>hexo n ""</code>. Put images in this folder and then use
-<code>![](xxx\xxx.png)</code>. Note that images won't be loaded properly
-on home page.</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Guideline</category>
-      </categories>
   </entry>
   <entry>
     <title>多项式板子</title>
